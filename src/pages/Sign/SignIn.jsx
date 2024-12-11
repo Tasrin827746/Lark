@@ -20,11 +20,6 @@ const SignIn = () => {
       <div className="w-full max-w-md bg-white rounded-md shadow-md p-6 ml-40 mt-16">
         <div className="flex items-center justify-between">
           <h1 className="text-lg font-bold">Welcome to Lark</h1>
-          {/* <img
-            src="https://via.placeholder.com/24" 
-            alt="QR Code"
-            className="h-6 w-6"
-          /> */}
         </div>
         <form className="mt-4">
           <div className="flex space-x-4">
