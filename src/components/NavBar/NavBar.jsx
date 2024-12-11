@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function NavBar() {
   const [openDropdown, setOpenDropdown] = useState(null);
   const [menuActive, setMenuActive] = useState(false);
   const [productOptions, setProductOptions] = useState([]);
-  const [dropdownHovered, setDropdownHovered] = useState(false); // Track dropdown hover
+  const [dropdownHovered, setDropdownHovered] = useState(false);
+
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setMenuActive((prev) => !prev);
@@ -23,7 +26,6 @@ export default function NavBar() {
   };
 
   const handleMouseLeave = () => {
-
     setTimeout(() => {
       if (!dropdownHovered) {
         setOpenDropdown(null);
@@ -60,7 +62,6 @@ export default function NavBar() {
             menuActive ? "block" : "hidden"
           }`}
         >
-          {/* Dropdown Menu for "Product" */}
           <div
             className="relative"
             onMouseEnter={handleMouseEnter}
@@ -113,30 +114,15 @@ export default function NavBar() {
             )}
           </div>
 
-          {/* Other Menus */}
           {["Solutions", "Resources", "Blog"].map((menu) => (
             <div key={menu} className="relative">
               <button
                 className="flex items-center hover:text-blue-600 text-l font-semibold"
               >
                 {menu}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 ml-1"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
               </button>
             </div>
           ))}
-
-          {/* Static Links */}
           <button className="hover:text-blue-600 text-l font-semibold">
             Trust
           </button>
@@ -151,7 +137,10 @@ export default function NavBar() {
             menuActive ? "block" : "hidden md:flex"
           }`}
         >
-          <button className="hover:text-blue-600 text-l font-semibold">
+          <button
+            className="hover:text-blue-600 text-l font-semibold"
+            onClick={() => navigate("/signin")}
+          >
             Log in
           </button>
           <button className="tablet-only text-l font-semibold rounded-full border border-blue-600 px-4 py-1 text-blue-600 hover:bg-slate-200 h-12">
